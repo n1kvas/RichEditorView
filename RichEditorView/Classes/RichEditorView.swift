@@ -536,10 +536,12 @@ import UIKit
     @objc private func viewWasTapped() {
         if !webView.containsFirstResponder {
             let point = tapRecognizer.location(in: webView)
-            focus(at: point)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5){
+            self.focus(at: point)
+            }
         }
     }
-
+    
     override open func becomeFirstResponder() -> Bool {
         if !webView.containsFirstResponder {
             focus()
